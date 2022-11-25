@@ -25,7 +25,7 @@ theory_list = [
 xlabel = r"$k$"
 ylabel = r"$\ln 10^{10} \mathcal P \mathcal R(k)$"
 xscale = "log"
-ylim = (1.9, 4.1)
+ylim = (2.0, 4.0)
 ax_set_kwargs = {"xlabel": "$k$", "ylabel": r"$\ln 10^{10} \mathcal P \mathcal R(k)$", "xscale": "log", "ylim": (1.9, 4.1)}
 
 
@@ -63,6 +63,7 @@ def plot(samples: NestedSamples, ax=None, resolution=100, colors="Reds_r", title
     # cbar.set_ticklabels(["", r"$1\sigma$", r"$2\sigma$", r"$3\sigma$"], fontsize="large")
 
     _ax.set(xscale=xscale, ylim=ylim, title=title)
+    _ax.set(xlabel=xlabel, ylabel=ylabel)
 
     return _ax
 
