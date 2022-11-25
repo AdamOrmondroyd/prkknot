@@ -43,11 +43,13 @@ def plot(samples: NestedSamples, ax=None, resolution=100, colors="Reds_r", title
 
     ks = np.logspace(theory.lgkmin, theory.lgkmax, resolution)
 
+    weights = np.array([idx[1] for idx in samples.index])
+
     cbar = plot_contours(
         theory.prk,
         ks,
         samples[theory.params.keys()],
-        weights=samples.weights,
+        weights=weights,
         ax=_ax,
         colors=colors,
     )
