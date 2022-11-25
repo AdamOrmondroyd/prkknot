@@ -46,7 +46,7 @@ def plot(samples: NestedSamples, ax=None, resolution=100, colors="Reds_r", title
     cbar = plot_contours(
         theory.prk,
         ks,
-        samples[_theory.params.keys()],
+        samples[theory.params.keys()],
         weights=samples.weights,
         ax=_ax,
         colors=colors,
