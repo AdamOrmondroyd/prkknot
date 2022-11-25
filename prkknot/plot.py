@@ -26,10 +26,15 @@ xlabel = r"$k$"
 ylabel = r"$\ln{10^{10} \mathcal{P}_\mathcal{R}(k)}$"
 xscale = "log"
 ylim = (2.0, 4.0)
-ax_set_kwargs = {"xlabel": "$k$", "ylabel": r"$\ln 10^{10} \mathcal P \mathcal R(k)$", "xscale": "log", "ylim": (1.9, 4.1)}
 
-
-def plot(samples: NestedSamples, ax=None, resolution=100, colors="Reds_r", title=None, fig=None):
+def plot(
+    samples: NestedSamples,
+    ax=None,
+    resolution=100,
+    colors="Reds_r",
+    title=None,
+    fig=None,
+):
 
     if ax is None:
         _, _ax = plt.subplots()
@@ -39,26 +44,19 @@ def plot(samples: NestedSamples, ax=None, resolution=100, colors="Reds_r", title
     for Theory in theory_list[::-1]:
         if all([key in samples for key in Theory.params.keys()]):
             break
-    print(Theory)
     theory = Theory()
-
-    ks = np.logspace(theory.lgkmin, theory.lgkmax, resolution)
-
-    def f(k, theta):
-        return theory.flexknot(np.log10(ks), theta)
-
 
     weights = np.array([idx[1] for idx in samples.index])
 
     cbar = plot_contours(
-        f,
-        ks,
+        lambda k, theta: theory.flexknot(np.log10(k), theta),
+        np.logspace(theory.lgkmin, theory.lgkmax, resolution),
         samples[theory.params.keys()],
         weights=weights,
         ax=_ax,
         colors=colors,
     )
-        
+
     # cbar = fig.colorbar(cbar, ticks=[0, 1, 2, 3], ax=ax, location="right")
     # cbar.set_ticklabels(["", r"$1\sigma$", r"$2\sigma$", r"$3\sigma$"], fontsize="large")
 
@@ -66,7 +64,3 @@ def plot(samples: NestedSamples, ax=None, resolution=100, colors="Reds_r", title
     _ax.set(xlabel=xlabel, ylabel=ylabel)
 
     return _ax
-
-
-
-

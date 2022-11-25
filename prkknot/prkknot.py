@@ -205,4 +205,3 @@ class Vanilla9(VanillaPRk):
         "lnPR7": None,
         "lnPR8": None,
     }
-
