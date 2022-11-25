@@ -45,7 +45,7 @@ def plot(samples: NestedSamples, ax=None, resolution=100, colors="Reds_r", title
     ks = np.logspace(theory.lgkmin, theory.lgkmax, resolution)
 
     def f(k, theta):
-        return np.exp(theory.flexknot(np.log10(ks), theta))#  * 10**-10
+        return theory.flexknot(np.log10(ks), theta)
 
 
     weights = np.array([idx[1] for idx in samples.index])
