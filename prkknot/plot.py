@@ -5,7 +5,7 @@ from anesthetic import NestedSamples
 from fgivenx import plot_contours
 
 from linf import Linf as Knot, AdaptiveLinf as AdaptiveKnot
-import prkknot
+from prkknot import prkknot
 
 
 theory_list = [
@@ -29,7 +29,7 @@ ylim = (1.9, 4.1)
 ax_set_kwargs = {"xlabel": "$k$", "ylabel": r"$\ln 10^{10} \mathcal P \mathcal R(k)$", "xscale": "log", "ylim": (1.9, 4.1)}
 
 
-def plot_prk(samples: NestedSamples, ax=None, resolution=100, colors="Reds_r", title=None, fig=None):
+def plot(samples: NestedSamples, ax=None, resolution=100, colors="Reds_r", title=None, fig=None):
 
     if ax is None:
         _, _ax = plt.subplots()
@@ -46,7 +46,7 @@ def plot_prk(samples: NestedSamples, ax=None, resolution=100, colors="Reds_r", t
     cbar = plot_contours(
         theory.prk,
         ks,
-        samples[_theory.params.keys(),
+        samples[_theory.params.keys()],
         weights=samples.weights,
         ax=_ax,
         colors=colors,

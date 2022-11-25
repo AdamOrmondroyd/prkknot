@@ -10,4 +10,4 @@ from prkknot.prkknot import (
     Vanilla8,
     Vanilla9,
 )
-from prkknot.prkplot import prkplot
+from prkknot.plot import plot
