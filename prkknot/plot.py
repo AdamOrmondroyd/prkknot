@@ -23,7 +23,7 @@ theory_list = [
 
 
 xlabel = r"$k$"
-ylabel = r"$\ln 10^{10} \mathcal P \mathcal R(k)$"
+ylabel = r"$\ln{10^{10} \mathcal{P}_\mathcal{R}(k)}$"
 xscale = "log"
 ylim = (2.0, 4.0)
 ax_set_kwargs = {"xlabel": "$k$", "ylabel": r"$\ln 10^{10} \mathcal P \mathcal R(k)$", "xscale": "log", "ylim": (1.9, 4.1)}
