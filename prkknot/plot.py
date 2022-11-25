@@ -37,7 +37,7 @@ def plot(samples: NestedSamples, ax=None, resolution=100, colors="Reds_r", title
         _ax = ax
 
     for Theory in theory_list:
-        if all([key in samples for key in theory.params.keys()]):
+        if all([key in samples for key in Theory.params.keys()]):
             break
     print(Theory)
     theory = Theory()
