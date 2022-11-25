@@ -36,10 +36,11 @@ def plot(samples: NestedSamples, ax=None, resolution=100, colors="Reds_r", title
     else:
         _ax = ax
 
-    for theory in theory_list:
+    for Theory in theory_list:
         if all([key in samples for key in theory.params.keys()]):
             break
-    print(theory)
+    print(Theory)
+    theory = Theory()
 
     ks = np.logspace(theory.lgkmin, theory.lgkmax, resolution)
 
