@@ -4,7 +4,7 @@ Primordial matter Power spectrum using a flex-knot.
 
 import numpy as np
 from cobaya import Theory
-from linf import AdaptiveLinf as AdaptiveKnot, Linf as FlexKnot
+from flexknot import AdaptiveKnot, FlexKnot
 
 
 class PRkKnot(Theory):

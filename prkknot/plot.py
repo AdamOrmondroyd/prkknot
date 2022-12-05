@@ -4,7 +4,7 @@ import anesthetic as ac
 from anesthetic import NestedSamples
 from fgivenx import plot_contours
 
-from linf import Linf as Knot, AdaptiveLinf as AdaptiveKnot
+from flexknot import FlexKnot, AdaptiveKnot
 from prkknot import prkknot
 
 
