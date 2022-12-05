@@ -9,9 +9,5 @@ dependencies = ["numpy", "cobaya", "flexknot@git+ssh://github.com/Ormorod/flexkn
 [project.urls]
 repository = "https://github.com/Ormorod/prkknot"
 
-[build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
-
 [project.optional-dependencies]
 dev = ["black"]
