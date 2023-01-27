@@ -42,18 +42,25 @@ def plot(
     else:
         _ax = ax
 
-    for Theory in theory_list[::-1]:
-        if all([key in samples for key in Theory.params.keys()]):
-            break
-    theory = Theory()
-
-    weights = np.array([idx[1] for idx in samples.index])
+    # special case to allow NPRk column to be added to samples, to treat
+    # concatenated Vanilla samples to be treated as Adaptive, even if
+    # they don't go up to 9 nodes
+    if "NPRk" in samples:
+        theory = prkknot.Adaptive()
+        keys = theory.params.keys()
+        keys = list(filter(lambda k: k in samples, keys))
+    else:
+        for Theory in theory_list[::-1]:
+            if all([key in samples for key in Theory.params.keys()]):
+                theory = Theory()
+                break
+        keys = theory.params.keys()
 
     cbar = plot_contours(
         lambda k, theta: theory.flexknot(np.log10(k), theta),
         np.logspace(theory.lgkmin, theory.lgkmax, resolution),
-        samples[theory.params.keys()],
-        weights=weights,
+        samples[keys],
+        weights=samples.get_weights(),
         ax=_ax,
         colors=colors,
     )
