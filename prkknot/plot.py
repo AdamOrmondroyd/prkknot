@@ -27,6 +27,7 @@ ylabel = r"$\ln{10^{10} \mathcal{P}_\mathcal{R}(k)}$"
 xscale = "log"
 ylim = (2.0, 4.0)
 
+
 def plot(
     samples: NestedSamples,
     ax=None,
