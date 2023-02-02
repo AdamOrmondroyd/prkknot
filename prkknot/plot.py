@@ -36,7 +36,6 @@ def plot(
     title=None,
     fig=None,
 ):
-
     if ax is None:
         _, _ax = plt.subplots()
     else:
