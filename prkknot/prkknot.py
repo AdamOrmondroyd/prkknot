@@ -42,7 +42,6 @@ class PRkKnot(Theory):
 
 
 class Adaptive(PRkKnot):
-
     params = {
         "NPRk": None,
         "lnPR0": None,
@@ -64,14 +63,12 @@ class Adaptive(PRkKnot):
     }
 
     def __init__(self, *args, **kwargs):
-
         self.flexknot = AdaptiveKnot(self.lgkmin, self.lgkmax)
         super().__init__(*args, **kwargs)
 
 
 class VanillaPRk(PRkKnot):
     def __init__(self, *args, **kwargs):
-
         self.flexknot = FlexKnot(self.lgkmin, self.lgkmax)
         super().__init__(*args, **kwargs)
 
@@ -81,14 +78,12 @@ class VanillaPRk(PRkKnot):
 
 
 class Vanilla1(VanillaPRk):
-
     params = {
         "lnPR8": None,
     }
 
 
 class Vanilla2(VanillaPRk):
-
     params = {
         "lnPR0": None,
         "lnPR8": None,
@@ -96,7 +91,6 @@ class Vanilla2(VanillaPRk):
 
 
 class Vanilla3(VanillaPRk):
-
     params = {
         "lnPR0": None,
         "lgk1": None,
@@ -106,7 +100,6 @@ class Vanilla3(VanillaPRk):
 
 
 class Vanilla4(VanillaPRk):
-
     params = {
         "lnPR0": None,
         "lgk1": None,
@@ -118,7 +111,6 @@ class Vanilla4(VanillaPRk):
 
 
 class Vanilla5(VanillaPRk):
-
     params = {
         "lnPR0": None,
         "lgk1": None,
@@ -132,7 +124,6 @@ class Vanilla5(VanillaPRk):
 
 
 class Vanilla6(VanillaPRk):
-
     params = {
         "lnPR0": None,
         "lgk1": None,
@@ -148,7 +139,6 @@ class Vanilla6(VanillaPRk):
 
 
 class Vanilla7(VanillaPRk):
-
     params = {
         "lnPR0": None,
         "lgk1": None,
@@ -166,7 +156,6 @@ class Vanilla7(VanillaPRk):
 
 
 class Vanilla8(VanillaPRk):
-
     params = {
         "lnPR0": None,
         "lgk1": None,
@@ -186,7 +175,6 @@ class Vanilla8(VanillaPRk):
 
 
 class Vanilla9(VanillaPRk):
-
     params = {
         "lnPR0": None,
         "lgk1": None,
