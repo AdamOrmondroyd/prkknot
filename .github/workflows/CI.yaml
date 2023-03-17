@@ -44,5 +44,5 @@ jobs:
           sudo apt-get install gfortran libopenmpi-dev
           python -m pip install --upgrade pip
           pip install git+https://github.com/PolyChord/PolyChordLite
-          pip install https://github.com/williamjameshandley/anesthetic
+          pip install git+https://github.com/williamjameshandley/anesthetic
           pip install .
