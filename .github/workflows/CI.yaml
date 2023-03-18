@@ -39,11 +39,20 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
-        run: |
-          sudo apt-get install gfortran libopenmpi-dev
+
+      - name: Install compilers (linux)
+        if: ${{ matrix.os == 'ubuntu-latest'}}
+        run: sudo apt-get install gfortran libopenmpi-dev
+
+      - name: Install compilers (MacOS)
+        if: ${{ matrix.os == 'macos-latest'}}
+        run: brew install cmake openmpi gcc
+
+      - name: pip install dependencies
           python -m pip install --upgrade pip
           pip install git+https://github.com/PolyChord/PolyChordLite
           pip install git+https://github.com/williamjameshandley/anesthetic
           pip install git+https://github.com/Ormorod/flexknot
+
+      - name: Check pip install
           pip install .
