@@ -55,5 +55,6 @@ jobs:
           pip install git+https://github.com/williamjameshandley/anesthetic
           pip install git+https://github.com/Ormorod/flexknot
 
-      - name: Check pip install
+      - name: Test pip install
+        run: |
           pip install .
