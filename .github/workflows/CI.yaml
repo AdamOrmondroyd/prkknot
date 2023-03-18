@@ -41,11 +41,11 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install compilers (linux)
-        if: matrix.os == 'ubuntu-latest'
+        if: runner.os == "Linux"
         run: sudo apt-get install gfortran libopenmpi-dev
 
       - name: Install compilers (MacOS)
-        if: matrix.os == 'macos-latest'
+        if: runner.os == 'macOS'
         run: brew install cmake openmpi gcc
 
       - name: pip install dependencies
