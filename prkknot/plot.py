@@ -22,20 +22,23 @@ theory_list = [
 ]
 
 
-xlabel = r"$k$"
-ylabel = r"$\ln{10^{10} \mathcal{P}_\mathcal{R}(k)}$"
-xscale = "log"
-ylim = (2.0, 4.0)
-
-
 def plot(
     samples: NestedSamples,
     ax=None,
     resolution=100,
-    colors="Reds_r",
     title=None,
     fig=None,
+    xlabel=r"$k$",
+    ylabel=r"$\ln{10^{10} \mathcal{P}_\mathcal{R}(k)}$",
+    xscale="log",
+    ylim=(2.0, 4.0),
+    **kwargs,
 ):
+    """
+    Plot functional posterior of P_R(k) of samples.
+
+    **kwargs passed on to fgivenx.plot_contours.
+    """
     if ax is None:
         _, _ax = plt.subplots()
     else:
@@ -61,7 +64,7 @@ def plot(
         samples[keys],
         weights=samples.get_weights(),
         ax=_ax,
-        colors=colors,
+        **kwargs,
     )
 
     # cbar = fig.colorbar(cbar, ticks=[0, 1, 2, 3], ax=ax, location="right")
