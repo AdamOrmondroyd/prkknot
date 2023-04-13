@@ -32,8 +32,13 @@ def plot(
     ylabel=r"$\ln{10^{10} \mathcal{P}_\mathcal{R}(k)}$",
     xscale="log",
     ylim=(2.0, 4.0),
-    **fgivenx_kwargs,
+    **kwargs,
 ):
+    """
+    Plot functional posterior of P_R(k) of samples.
+
+    **kwargs passed on to fgivenx.plot_contours.
+    """
     if ax is None:
         _, _ax = plt.subplots()
     else:
@@ -59,7 +64,7 @@ def plot(
         samples[keys],
         weights=samples.get_weights(),
         ax=_ax,
-        **fgivenx_kwargs,
+        **kwargs,
     )
 
     # cbar = fig.colorbar(cbar, ticks=[0, 1, 2, 3], ax=ax, location="right")
