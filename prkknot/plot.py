@@ -22,19 +22,17 @@ theory_list = [
 ]
 
 
-xlabel = r"$k$"
-ylabel = r"$\ln{10^{10} \mathcal{P}_\mathcal{R}(k)}$"
-xscale = "log"
-ylim = (2.0, 4.0)
-
-
 def plot(
     samples: NestedSamples,
     ax=None,
     resolution=100,
     title=None,
     fig=None,
-    **fgivenx_kwargs
+    xlabel=r"$k$",
+    ylabel=r"$\ln{10^{10} \mathcal{P}_\mathcal{R}(k)}$",
+    xscale="log",
+    ylim=(2.0, 4.0),
+    **fgivenx_kwargs,
 ):
     if ax is None:
         _, _ax = plt.subplots()
