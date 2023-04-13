@@ -32,9 +32,9 @@ def plot(
     samples: NestedSamples,
     ax=None,
     resolution=100,
-    colors="Reds_r",
     title=None,
     fig=None,
+    **fgivenx_kwargs
 ):
     if ax is None:
         _, _ax = plt.subplots()
@@ -61,7 +61,7 @@ def plot(
         samples[keys],
         weights=samples.get_weights(),
         ax=_ax,
-        colors=colors,
+        **fgivenx_kwargs,
     )
 
     # cbar = fig.colorbar(cbar, ticks=[0, 1, 2, 3], ax=ax, location="right")
