@@ -7,7 +7,7 @@ readme = "README.md"
 dependencies = ["numpy", "cobaya", "flexknot", "anesthetic", "fgivenx"]
 
 [project.urls]
-repository = "https://github.com/Ormorod/prkknot"
+repository = "https://github.com/adamormondroyd/prkknot"
 
 [project.optional-dependencies]
 dev = ["black"]
