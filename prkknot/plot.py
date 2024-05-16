@@ -66,7 +66,6 @@ def plot(
         **kwargs,
     )
 
-    _ax.set(xscale=xscale, ylim=ylim)
-    _ax.set(xlabel=xlabel, ylabel=ylabel)
+    _ax.set(xscale=xscale, ylim=ylim, xlabel=xlabel, ylabel=ylabel)
 
     return _ax
