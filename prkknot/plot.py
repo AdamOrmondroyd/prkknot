@@ -33,12 +33,10 @@ def plot(
     """
     Plot functional posterior of P_R(k) of samples.
 
-    **kwargs passed on to fgivenx.plot_contours.
+
     """
     if ax is None:
-        _, _ax = plt.subplots()
-    else:
-        _ax = ax
+        _, ax = plt.subplots()
 
     # special case to allow NPRk column to be added to samples, to treat
     # concatenated Vanilla samples to be treated as Adaptive, even if
@@ -60,7 +58,7 @@ def plot(
             np.logspace(theory.lgkmin, theory.lgkmax, resolution),
             samples[keys],
             weights=samples.get_weights(),
-            ax=_ax,
+            ax=ax,
             **kwargs,
         )
     else:
@@ -69,10 +67,10 @@ def plot(
             np.logspace(theory.lgkmin, theory.lgkmax, resolution),
             samples[keys],
             weights=samples.get_weights(),
-            ax=_ax,
+            ax=ax,
             **kwargs,
         )
 
-    _ax.set(xscale=xscale, ylim=ylim, xlabel=xlabel, ylabel=ylabel)
+    ax.set(xscale=xscale, ylim=ylim, xlabel=xlabel, ylabel=ylabel)
 
-    return _ax
+    return ax
