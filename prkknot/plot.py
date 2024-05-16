@@ -2,9 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from anesthetic import NestedSamples
 from fgivenx import plot_contours
-
 from prkknot import prkknot
-
 
 theory_list = [
     prkknot.Vanilla1,
