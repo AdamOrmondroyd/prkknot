@@ -33,6 +33,32 @@ def plot(
     """
     Plot functional posterior of P_R(k) of samples.
 
+    Parameters
+    ----------
+    samples: NestedSamples
+        Samples to plot.
+
+    ax: matplotlib.axes.Axes, optional
+        Axes to plot on. If None, a new figure is created.
+
+    resolution: int, optional
+        Number of points to evaluate the theory at.
+
+    xlabel: str, optional
+        Label for x-axis.
+
+    ylabel: str, optional
+        Label for y-axis.
+
+    xscale: str, optional
+        Scale for x-axis.
+        Power spectrum is usually plotted on a log scale.
+
+    ylim: tuple, optional
+        Limits for y-axis.
+
+    lines: bool, optional
+        Plot lines instead of contours.
 
     """
     if ax is None:
