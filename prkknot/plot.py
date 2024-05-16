@@ -26,7 +26,6 @@ def plot(
     samples: NestedSamples,
     ax=None,
     resolution=100,
-    title=None,
     fig=None,
     xlabel=r"$k$",
     ylabel=r"$\ln{10^{10} \mathcal{P}_\mathcal{R}(k)}$",
@@ -67,7 +66,7 @@ def plot(
         **kwargs,
     )
 
-    _ax.set(xscale=xscale, ylim=ylim, title=title)
+    _ax.set(xscale=xscale, ylim=ylim)
     _ax.set(xlabel=xlabel, ylabel=ylabel)
 
     return _ax
