@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from anesthetic import NestedSamples
-from fgivenx import plot_contours
+from fgivenx import plot_contours, plot_lines
 from prkknot import prkknot
 
 theory_list = [
@@ -27,6 +27,7 @@ def plot(
     ylabel=r"$\ln{10^{10} \mathcal{P}_\mathcal{R}(k)}$",
     xscale="log",
     ylim=(2.0, 4.0),
+    lines=False,
     **kwargs,
 ):
     """
@@ -53,14 +54,24 @@ def plot(
                 break
         keys = theory.params.keys()
 
-    cbar = plot_contours(
-        lambda k, theta: theory.flexknot(np.log10(k), theta),
-        np.logspace(theory.lgkmin, theory.lgkmax, resolution),
-        samples[keys],
-        weights=samples.get_weights(),
-        ax=_ax,
-        **kwargs,
-    )
+    if lines:
+        plot_lines(
+            lambda k, theta: theory.flexknot(np.log10(k), theta),
+            np.logspace(theory.lgkmin, theory.lgkmax, resolution),
+            samples[keys],
+            weights=samples.get_weights(),
+            ax=_ax,
+            **kwargs,
+        )
+    else:
+        plot_contours(
+            lambda k, theta: theory.flexknot(np.log10(k), theta),
+            np.logspace(theory.lgkmin, theory.lgkmax, resolution),
+            samples[keys],
+            weights=samples.get_weights(),
+            ax=_ax,
+            **kwargs,
+        )
 
     _ax.set(xscale=xscale, ylim=ylim, xlabel=xlabel, ylabel=ylabel)
 
