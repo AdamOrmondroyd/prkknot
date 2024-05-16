@@ -22,7 +22,6 @@ def plot(
     samples: NestedSamples,
     ax=None,
     resolution=100,
-    fig=None,
     xlabel=r"$k$",
     ylabel=r"$\ln{10^{10} \mathcal{P}_\mathcal{R}(k)}$",
     xscale="log",
