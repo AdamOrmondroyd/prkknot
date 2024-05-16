@@ -67,9 +67,6 @@ def plot(
         **kwargs,
     )
 
-    # cbar = fig.colorbar(cbar, ticks=[0, 1, 2, 3], ax=ax, location="right")
-    # cbar.set_ticklabels(["", r"$1\sigma$", r"$2\sigma$", r"$3\sigma$"], fontsize="large")
-
     _ax.set(xscale=xscale, ylim=ylim, title=title)
     _ax.set(xlabel=xlabel, ylabel=ylabel)
 
