@@ -1,10 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import anesthetic as ac
 from anesthetic import NestedSamples
 from fgivenx import plot_contours
 
-from flexknot import FlexKnot, AdaptiveKnot
 from prkknot import prkknot
 
 
