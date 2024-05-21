@@ -19,6 +19,17 @@ class PRkKnot(Theory):
     num_ks = 100
     lgkmin = -4
     lgkmax = -0.3
+    n = None
+    params = {}
+
+    def initialise(self):
+        if self.n >= 2:
+            self.params["lnPR0"] = None
+        for i in range(1, self.n - 1):
+            self.params[f"a{i}"] = None
+            self.params[f"lnPR{i}"] = None
+        if self.n >= 1:
+            self.params["lnPRn"] = None
 
     def prk(self, theta):
         lgks = np.linspace(self.lgkmin, self.lgkmax, self.num_ks)
@@ -42,154 +53,19 @@ class PRkKnot(Theory):
 
 
 class Adaptive(PRkKnot):
-    params = {
-        "NPRk": None,
-        "lnPR0": None,
-        "lgk1": None,
-        "lnPR1": None,
-        "lgk2": None,
-        "lnPR2": None,
-        "lgk3": None,
-        "lnPR3": None,
-        "lgk4": None,
-        "lnPR4": None,
-        "lgk5": None,
-        "lnPR5": None,
-        "lgk6": None,
-        "lnPR6": None,
-        "lgk7": None,
-        "lnPR7": None,
-        "lnPR8": None,
-    }
+
+    n = 9
 
     def __init__(self, *args, **kwargs):
         self.flexknot = AdaptiveKnot(self.lgkmin, self.lgkmax)
         super().__init__(*args, **kwargs)
+
+    def initialize(self):
+        self.params = {"NPRk": None}
+        super().initialize()
 
 
 class VanillaPRk(PRkKnot):
     def __init__(self, *args, **kwargs):
         self.flexknot = FlexKnot(self.lgkmin, self.lgkmax)
         super().__init__(*args, **kwargs)
-
-
-# TODO: see if I can just put the params in the constructor to be
-# defined with a for loop
-
-
-class Vanilla1(VanillaPRk):
-    params = {
-        "lnPR8": None,
-    }
-
-
-class Vanilla2(VanillaPRk):
-    params = {
-        "lnPR0": None,
-        "lnPR8": None,
-    }
-
-
-class Vanilla3(VanillaPRk):
-    params = {
-        "lnPR0": None,
-        "lgk1": None,
-        "lnPR1": None,
-        "lnPR8": None,
-    }
-
-
-class Vanilla4(VanillaPRk):
-    params = {
-        "lnPR0": None,
-        "lgk1": None,
-        "lnPR1": None,
-        "lgk2": None,
-        "lnPR2": None,
-        "lnPR8": None,
-    }
-
-
-class Vanilla5(VanillaPRk):
-    params = {
-        "lnPR0": None,
-        "lgk1": None,
-        "lnPR1": None,
-        "lgk2": None,
-        "lnPR2": None,
-        "lgk3": None,
-        "lnPR3": None,
-        "lnPR8": None,
-    }
-
-
-class Vanilla6(VanillaPRk):
-    params = {
-        "lnPR0": None,
-        "lgk1": None,
-        "lnPR1": None,
-        "lgk2": None,
-        "lnPR2": None,
-        "lgk3": None,
-        "lnPR3": None,
-        "lgk4": None,
-        "lnPR4": None,
-        "lnPR8": None,
-    }
-
-
-class Vanilla7(VanillaPRk):
-    params = {
-        "lnPR0": None,
-        "lgk1": None,
-        "lnPR1": None,
-        "lgk2": None,
-        "lnPR2": None,
-        "lgk3": None,
-        "lnPR3": None,
-        "lgk4": None,
-        "lnPR4": None,
-        "lgk5": None,
-        "lnPR5": None,
-        "lnPR8": None,
-    }
-
-
-class Vanilla8(VanillaPRk):
-    params = {
-        "lnPR0": None,
-        "lgk1": None,
-        "lnPR1": None,
-        "lgk2": None,
-        "lnPR2": None,
-        "lgk3": None,
-        "lnPR3": None,
-        "lgk4": None,
-        "lnPR4": None,
-        "lgk5": None,
-        "lnPR5": None,
-        "lgk6": None,
-        "lnPR6": None,
-        "lnPR8": None,
-    }
-
-
-class Vanilla9(VanillaPRk):
-    params = {
-        "lnPR0": None,
-        "lgk1": None,
-        "lnPR1": None,
-        "lgk2": None,
-        "lnPR2": None,
-        "lgk3": None,
-        "lnPR3": None,
-        "lgk4": None,
-        "lnPR4": None,
-        "lgk5": None,
-        "lnPR5": None,
-        "lgk6": None,
-        "lnPR6": None,
-        "lgk7": None,
-        "lnPR7": None,
-        "lnPR8": None,
-    }
