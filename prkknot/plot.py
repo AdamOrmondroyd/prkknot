@@ -1,12 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import anesthetic as ac
 from anesthetic import NestedSamples
-from fgivenx import plot_contours
-
-from flexknot import FlexKnot, AdaptiveKnot
+from fgivenx import plot_contours, plot_lines
 from prkknot import prkknot
-
 
 theory_list = [
     prkknot.Vanilla1,
@@ -26,23 +22,55 @@ def plot(
     samples: NestedSamples,
     ax=None,
     resolution=100,
-    title=None,
-    fig=None,
     xlabel=r"$k$",
     ylabel=r"$\ln{10^{10} \mathcal{P}_\mathcal{R}(k)}$",
     xscale="log",
     ylim=(2.0, 4.0),
+    lines=False,
     **kwargs,
 ):
     """
     Plot functional posterior of P_R(k) of samples.
 
-    **kwargs passed on to fgivenx.plot_contours.
+    Parameters
+    ----------
+    samples: NestedSamples
+        Samples to plot.
+
+    ax: matplotlib.axes.Axes, optional
+        Axes to plot on. If None, a new figure is created.
+
+    resolution: int, optional
+        Number of points to evaluate the theory at.
+
+    xlabel: str, optional
+        Label for x-axis.
+
+    ylabel: str, optional
+        Label for y-axis.
+
+    xscale: str, optional
+        Scale for x-axis.
+        Power spectrum is usually plotted on a log scale.
+
+    ylim: tuple, optional
+        Limits for y-axis.
+
+    lines: bool, optional
+        Plot lines instead of contours.
+
+    color : str, optional
+        Color of lines.
+
+    **kwargs : passed to fgivenx.plot_contours or fgivenx.plot_lines
+
+    Returns
+    -------
+    ax : matplotlib.Axes
+
     """
     if ax is None:
-        _, _ax = plt.subplots()
-    else:
-        _ax = ax
+        _, ax = plt.subplots()
 
     # special case to allow NPRk column to be added to samples, to treat
     # concatenated Vanilla samples to be treated as Adaptive, even if
@@ -58,19 +86,25 @@ def plot(
                 break
         keys = theory.params.keys()
 
-    cbar = plot_contours(
-        lambda k, theta: theory.flexknot(np.log10(k), theta),
-        np.logspace(theory.lgkmin, theory.lgkmax, resolution),
-        samples[keys],
-        weights=samples.get_weights(),
-        ax=_ax,
-        **kwargs,
-    )
+    if lines:
+        plot_lines(
+            lambda k, theta: theory.flexknot(np.log10(k), theta),
+            np.logspace(theory.lgkmin, theory.lgkmax, resolution),
+            samples[keys],
+            weights=samples.get_weights(),
+            ax=ax,
+            **kwargs,
+        )
+    else:
+        plot_contours(
+            lambda k, theta: theory.flexknot(np.log10(k), theta),
+            np.logspace(theory.lgkmin, theory.lgkmax, resolution),
+            samples[keys],
+            weights=samples.get_weights(),
+            ax=ax,
+            **kwargs,
+        )
 
-    # cbar = fig.colorbar(cbar, ticks=[0, 1, 2, 3], ax=ax, location="right")
-    # cbar.set_ticklabels(["", r"$1\sigma$", r"$2\sigma$", r"$3\sigma$"], fontsize="large")
+    ax.set(xscale=xscale, ylim=ylim, xlabel=xlabel, ylabel=ylabel)
 
-    _ax.set(xscale=xscale, ylim=ylim, title=title)
-    _ax.set(xlabel=xlabel, ylabel=ylabel)
-
-    return _ax
+    return ax
