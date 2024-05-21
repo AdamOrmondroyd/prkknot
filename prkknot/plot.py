@@ -59,6 +59,15 @@ def plot(
     lines: bool, optional
         Plot lines instead of contours.
 
+    color : str, optional
+        Color of lines.
+
+    **kwargs : passed to fgivenx.plot_contours or fgivenx.plot_lines
+
+    Returns
+    -------
+    ax : matplotlib.Axes
+
     """
     if ax is None:
         _, ax = plt.subplots()
