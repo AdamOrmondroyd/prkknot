@@ -65,7 +65,7 @@ class Adaptive(PRkKnot):
         super().initialize()
 
 
-class VanillaPRk(PRkKnot):
+class Vanilla(PRkKnot):
     def __init__(self, *args, **kwargs):
         self.flexknot = FlexKnot(self.lgkmin, self.lgkmax)
         super().__init__(*args, **kwargs)
