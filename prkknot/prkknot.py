@@ -22,7 +22,7 @@ class PRkKnot(Theory):
     n = None
     params = {}
 
-    def initialise(self):
+    def initialize(self):
         if self.n >= 2:
             self.params["lnPR0"] = None
         for i in range(1, self.n - 1):
