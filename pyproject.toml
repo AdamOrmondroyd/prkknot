@@ -15,4 +15,4 @@ dev = ["black", "pre-commit"]
 requires = ["setuptools_scm>=8"]
 
 [tool.setuptools_scm]
-version_file = "darkknot/_version.py"
+version_file = "prkknot/_version.py"
