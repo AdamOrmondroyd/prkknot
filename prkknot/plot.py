@@ -1,21 +1,9 @@
+import re
 import numpy as np
 import matplotlib.pyplot as plt
 from anesthetic import NestedSamples
 from fgivenx import plot_contours, plot_lines
 from prkknot import prkknot
-
-theory_list = [
-    prkknot.Vanilla1,
-    prkknot.Vanilla2,
-    prkknot.Vanilla3,
-    prkknot.Vanilla4,
-    prkknot.Vanilla5,
-    prkknot.Vanilla6,
-    prkknot.Vanilla7,
-    prkknot.Vanilla8,
-    prkknot.Vanilla9,
-    prkknot.Adaptive,
-]
 
 
 def plot(
@@ -72,18 +60,19 @@ def plot(
     if ax is None:
         _, ax = plt.subplots()
 
-    # special case to allow NPRk column to be added to samples, to treat
-    # concatenated Vanilla samples to be treated as Adaptive, even if
-    # they don't go up to 9 nodes
+    pattern = re.compile(r"\b(?:lnPR\d+|lgk\d+|lnPRn|NPRk)\b")
+    keys = [
+        key for key in list(samples.columns.get_level_values(0)) if pattern.match(key)
+    ]
+    n = max(int(key[1:]) for key in keys if key != "lnPRn" and key != "NPRk") + 2
+    # regex matching may pick up the wrong order of keys, so get the correct
+    # order from the relevant theory
     if "NPRk" in samples:
-        theory = prkknot.Adaptive()
+        theory = prkknot.Adaptive({"n": n})
         keys = theory.params.keys()
         keys = list(filter(lambda k: k in samples, keys))
     else:
-        for Theory in theory_list[::-1]:
-            if all([key in samples for key in Theory.params.keys()]):
-                theory = Theory()
-                break
+        theory = prkknot.Vanilla({"n": n})
         keys = theory.params.keys()
 
     if contours:
