@@ -26,7 +26,7 @@ class PRkKnot(Theory):
         if self.n >= 2:
             self.params["lnPR0"] = None
         for i in range(1, self.n - 1):
-            self.params[f"a{i}"] = None
+            self.params[f"lgk{i}"] = None
             self.params[f"lnPR{i}"] = None
         if self.n >= 1:
             self.params["lnPRn"] = None

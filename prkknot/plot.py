@@ -26,7 +26,7 @@ def plot(
     ylabel=r"$\ln{10^{10} \mathcal{P}_\mathcal{R}(k)}$",
     xscale="log",
     ylim=(2.0, 4.0),
-    lines=False,
+    contours=True,
     **kwargs,
 ):
     """
@@ -56,8 +56,8 @@ def plot(
     ylim: tuple, optional
         Limits for y-axis.
 
-    lines: bool, optional
-        Plot lines instead of contours.
+    contours : bool, optional
+        use fgivenx.plot_contours, else fgivenx.plot_lines
 
     color : str, optional
         Color of lines.
@@ -86,8 +86,8 @@ def plot(
                 break
         keys = theory.params.keys()
 
-    if lines:
-        plot_lines(
+    if contours:
+        plot_contours(
             lambda k, theta: theory.flexknot(np.log10(k), theta),
             np.logspace(theory.lgkmin, theory.lgkmax, resolution),
             samples[keys],
@@ -96,7 +96,7 @@ def plot(
             **kwargs,
         )
     else:
-        plot_contours(
+        plot_lines(
             lambda k, theta: theory.flexknot(np.log10(k), theta),
             np.logspace(theory.lgkmin, theory.lgkmax, resolution),
             samples[keys],
