@@ -64,7 +64,7 @@ def plot(
     keys = [
         key for key in list(samples.columns.get_level_values(0)) if pattern.match(key)
     ]
-    n = max(int(key[1:]) for key in keys if key != "lnPRn" and key != "NPRk") + 2
+    n = max(int(i) for i in re.findall(r"\d+", "".join(keys))) + 2
     # regex matching may pick up the wrong order of keys, so get the correct
     # order from the relevant theory
     if "NPRk" in samples:
