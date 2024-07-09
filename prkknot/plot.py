@@ -10,7 +10,7 @@ def plot(
     samples: NestedSamples,
     ax=None,
     resolution=100,
-    xlabel=r"$k$",
+    xlabel=r"$k/\mathrm{Mpc}^{-1}$",
     ylabel=r"$\ln{10^{10} \mathcal{P}_\mathcal{R}(k)}$",
     xscale="log",
     ylim=(2.0, 4.0),
